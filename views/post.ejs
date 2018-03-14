@@ -17,21 +17,12 @@
                 
 
                     <h2><%=page.title%></h2>
-
-
-
-
                     <span class='created'>
            <%=page.modified%>
 		</span>
                 </header>
                 
                 <div id="post_<%= page._id%>"  class="blog_post">
-
-
-
-
-
 
                     <%-page.post%>
                     <%if(('/redactPost/'+page._id)== wysiwygAjax){%> <%var post_redact=page.post.replace(/<br>/g,"\r\n");var title_redact=page.title;}%>
@@ -45,8 +36,6 @@
                 
 
 <a href="/posts" >На главную</a>
-           
-
             
                     </div>
                    <%if(('/redactPost/'+page._id)== wysiwygAjax){%>  <%- include partial/wysiwyg.ejs %><%}%>

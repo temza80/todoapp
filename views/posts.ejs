@@ -26,11 +26,7 @@
                 </div>
                 <div id="teaser_<%= data[i]._id%>" class="blog_post" >
 
-
-
                     <%-data[i].teaser%>
-
-
 
                 </div>
 
@@ -39,11 +35,7 @@
 
 
                <br><br>
-
-
-                
-                  
-                    <%if(user!=null){%>  <a href='/delpost/<%=data[i]._id%>'class='underpost_links'>Удалить</a>
+			<%if(user!=null){%>  <a href='/delpost/<%=data[i]._id%>'class='underpost_links'>Удалить</a>
                     <a href='/postredpost/<%=data[i]._id%>'class='underpost_links'>Редакировать</a><%}%>
                 </div>
 
