@@ -1,0 +1,51 @@
+<div class="wysiwyg clearfix">
+
+    <div class="textareas clearfix">
+<textarea id="wysiwyg_title" cols="75" rows="1"><%if((typeof title_redact)!='undefined'){%> <%=title_redact%><%}%></textarea>
+
+<br>
+<textarea id="wysiwyg" cols="75" rows="12"><%if((typeof post_redact)!='undefined'){%> <%=post_redact%> <%}%></textarea>
+
+
+</div><br>
+
+
+
+
+<span id="publishPost" class="button  publishPost">publishPost</span>
+
+
+
+<script>
+    $('#publishPost').on('click',function() {
+          
+		
+        var title;
+        if($('#wysiwyg_title').val()=='') title='...';
+        else title=$('#wysiwyg_title').val();
+
+        data={'title': title,'post':$('#wysiwyg').val()}
+        
+
+    
+        <%if(typeof(page)!='undefined'){%>data['post_id']='<%= page._id %>'<%}%>
+
+
+
+        if($('#wysiwyg').val()==''){ alert('Введите текст');return;}
+        $.ajax({
+            type: 'POST',
+            dataType: "text",
+            contentType: "application/json; charset=UTF-8",
+       
+            url: '<%=wysiwygAjax%>',
+
+            data:JSON.stringify(data),
+            success:function(data, textStatus, jqXHR){
+                if(data!='OK') alert(data);
+                else
+                location.href='<%if(typeof page=='undefined'){%>/posts<%}%><%if(typeof page!='undefined'){%>/post/<%=page._id%><%}%>'
+        }
+        });
+    });
+</script>

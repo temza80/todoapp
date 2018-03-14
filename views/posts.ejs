@@ -1,0 +1,66 @@
+
+
+
+<%  layout('/layout/layout')  %>
+<%- include partial/header.ejs %>
+<body class="left-sidebar">
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Content -->
+    <div id="content">
+        <div class="inner">
+            <%  for(i=0;i<data.length;i++){%>
+            <!-- Post -->
+            <article class="box post post-excerpt">
+                <header>
+
+                    <h2><a href='/post/<%= data[i]._id%>' id="post_start<%= data[i]._id%>"><%= data[i].title%></a></h2>
+                    <p> </p>
+                </header>
+                <div class="info">
+
+                   
+                </div>
+                <div id="teaser_<%= data[i]._id%>" class="blog_post" >
+
+
+
+                    <%-data[i].teaser%>
+
+
+
+                </div>
+
+                <div id="fulltext_<%= data[i]._id%>" class="blog_post"></div>
+                <div class='underpost_panel'>
+
+
+               <br><br>
+
+
+                
+                  
+                    <%if(user!=null){%>  <a href='/delpost/<%=data[i]._id%>'class='underpost_links'>Удалить</a>
+                    <a href='/postredpost/<%=data[i]._id%>'class='underpost_links'>Редакировать</a><%}%>
+                </div>
+
+
+            </article>
+
+            <%}%>
+
+
+        </div>
+        <%if(user!=null){%>
+                 <%- include partial/wysiwyg.ejs %>
+        <%}%>
+
+    </div>
+
+  
+
+</div>
+</body>

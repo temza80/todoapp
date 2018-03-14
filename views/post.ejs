@@ -1,0 +1,68 @@
+
+<%  layout('/layout/layout')  %>
+<%- include partial/header.ejs %>
+
+<body class="left-sidebar">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Content -->
+    <div id="content">
+        <div class="inner">
+
+            <!-- Post -->
+            <article class="box post post-excerpt">
+                <header>
+                
+
+                    <h2><%=page.title%></h2>
+
+
+
+
+                    <span class='created'>
+           <%=page.modified%>
+		</span>
+                </header>
+                
+                <div id="post_<%= page._id%>"  class="blog_post">
+
+
+
+
+
+
+                    <%-page.post%>
+                    <%if(('/redactPost/'+page._id)== wysiwygAjax){%> <%var post_redact=page.post.replace(/<br>/g,"\r\n");var title_redact=page.title;}%>
+
+
+                </div>
+   
+
+               <br><br>
+
+                
+
+<a href="/posts" >На главную</a>
+           
+
+            
+                    </div>
+                   <%if(('/redactPost/'+page._id)== wysiwygAjax){%>  <%- include partial/wysiwyg.ejs %><%}%>
+                </article>
+
+
+
+
+
+        </div>
+       
+        
+      
+    </div>
+
+  
+
+</div>
+</body>

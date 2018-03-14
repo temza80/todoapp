@@ -1,0 +1,79 @@
+<%  layout('/layout/layout')  %>
+
+
+<body class="left-sidebar">
+
+
+
+<div id="wrapper">
+
+    <!-- Content -->
+    <div id="login-content">
+
+<%if(typeof target!='undefined' && (target=='register' || target=='login')){%>
+            <form id="login">
+                <h1><%=formTitle%></h1>
+                <fieldset id="inputs">
+                    <input id="username_" name="username" type="text" placeholder="Логин" autofocus required>
+                    <input id="password_" name="password" type="password" placeholder="Пароль" required>
+                    <%if(target=='register'){%>  <input id="email_" type="email"  name="email" placeholder="Эл. почта" required><%}%>
+                </fieldset>
+                <fieldset id="actions">
+                    <input type="submit" id="submit" value=<%if(target=='login'){%>"ВОЙТИ"<%}%>
+                    <%if(target=='register'){%>"Регистрация"<%}%>>
+                    <%if(target=='login'){%>   <a href="">Забыли пароль?</a><a href="/register">Регистрация</a><%}%>
+                </fieldset>
+               
+
+            </form>
+
+<%}%>
+
+<%if(typeof message!='undefined'){%> <%-message%><%}%>
+
+    </div>
+   
+
+</div>
+</body>
+<%if(typeof target!='undefined' && (target=='login' || target=='register')){%>
+<script>
+    $(document.forms['login']).on('submit',function(e) {
+    e.preventDefault();
+        var form = $(this);
+       
+       
+    data={'username': $('#username_').val(),
+		  'password': $('#password_').val()
+    }
+    
+    <%if(target=='register'){%> data['email']=$('#email_').val();<%}%>
+
+        $.ajax({
+
+            url:"<%-scriptUrl%>",
+            method:'POST',
+            dataType: "text",
+            contentType: "application/json; charset=UTF-8",
+           
+          
+            data: JSON.stringify(data),
+          
+            success: function(res, xhr) {
+            
+              if(res!='ok')  alert(res);
+              else {window.location.href = '/posts'}
+            },
+           
+
+
+
+            
+         
+        });
+        
+    });
+
+
+</script>
+<%}%>
